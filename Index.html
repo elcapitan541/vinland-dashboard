@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinland Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            background-color: #1a1a1a; /* Fondo oscuro, como una noche en el mar del norte */
+            color: #e0e0e0;
+            font-family: 'Montserrat', sans-serif;
+            padding-left: 10%;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            max-width: 700px;
+        }
+
+        #clock {
+            font-size: 2rem;
+            color: #a32e2e; /* Rojo oscuro/sangre para el reloj */
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            margin-bottom: 5px;
+            letter-spacing: 3px;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 5rem;
+            line-height: 0.85;
+            margin: 0;
+            color: #d4af37; /* Color oro viejo/bronce */
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .shortcuts {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            margin-bottom: 35px;
+        }
+
+        .icon-card {
+            width: 50px;
+            height: 50px;
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 4px; /* Menos redondeado, más tosco */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #d4af37;
+            transition: 0.4s;
+        }
+
+        .icon-card:hover {
+            background-color: #d4af37;
+            color: #1a1a1a;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Estilo para las frases de guerreros */
+        .quote-container {
+            border-left: 2px solid #d4af37;
+            padding-left: 25px;
+            margin-top: 10px;
+        }
+
+        #quote-text {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #bbb;
+            margin: 0;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        #quote-author {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #d4af37;
+            text-transform: uppercase;
+            margin-top: 12px;
+            display: block;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="clock">00:00:00</div>
+        <h1>VINLAND<br>SAGA</h1>
+        
+        <div class="shortcuts">
+            <a href="https://github.com" class="icon-card"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="icon-card"><i class="fa-solid fa-scroll"></i></a> <a href="https://youtube.com" class="icon-card"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" class="icon-card"><i class="fa-solid fa-anchor"></i></a> </div>
+
+        <div class="quote-container">
+            <p id="quote-text">"Cargando sabiduría..."</p>
+            <span id="quote-author">- Guerrero</span>
+        </div>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            let h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
+            const ampm = h >= 12 ? 'PM' : 'AM';
+            h = h % 12 || 12;
+            m = m < 10 ? '0' + m : m;
+            s = s < 10 ? '0' + s : s;
+            document.getElementById('clock').textContent = `${h}:${m}:${s} ${ampm}`;
+        }
+
+        const quotes = [
+            { text: "No tienes enemigos. Nadie tiene enemigos. No hay nadie a quien debas herir.", author: "Thors Snorresson" },
+            { text: "Un guerrero no necesita una espada.", author: "Thors Snorresson" },
+            { text: "Solo los que luchan en el campo de batalla saben lo que significa la paz.", author: "Thorfinn" },
+            { text: "Para que este mundo sea un paraíso, el amor debe ser más que una simple palabra.", author: "Canute" },
+            { text: "Si vas a convertirte en un verdadero guerrero, primero debes aprender a amar.", author: "Thors Snorresson" },
+            { text: "He descubierto que no necesito el odio para seguir adelante.", author: "Thorfinn" },
+            { text: "El destino no es algo que se nos da, es algo que creamos con nuestras manos ensangrentadas.", author: "Askeladd" },
+            { text: "Todo el mundo es esclavo de algo.", author: "Askeladd" }
+        ];
+
+        function setRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            document.getElementById('quote-text').textContent = `"${quotes[randomIndex].text}"`;
+            document.getElementById('quote-author').textContent = `- ${quotes[randomIndex].author}`;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+        setRandomQuote();
+    </script>
+</body>
+</html>
